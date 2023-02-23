@@ -4,6 +4,7 @@ window.onload = function () {
   var boundary = document.querySelectorAll(".boundary");
   var gameStatus = document.getElementById("status");
   var ingame = document.getElementById("game");
+  cheat = false;
   gameon = false;
   lost = false;
   function lose() {
@@ -40,12 +41,11 @@ window.onload = function () {
     }
     lost = false;
     gameon = true;
+    cheat = false;
   }
 
   function cheat() {
-    if (gameon) {
-      gameStatus.innerHTML = "Cheater!!!!";
-    }
+    cheat = true;
   }
 
   start.addEventListener("click", started);
