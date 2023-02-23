@@ -4,7 +4,8 @@ window.onload = function () {
   var boundary = document.querySelectorAll(".boundary");
   var gameStatus = document.getElementById("status");
   var ingame = document.getElementById("game");
-  cheat = false;
+  var score = 0;
+  cheating = false;
   gameon = false;
   lost = false;
   function lose() {
@@ -14,6 +15,7 @@ window.onload = function () {
     } else {
       if (gameon) {
         gameStatus.innerHTML = "You Lost!"; //-10 here
+        score -= 10;
         for (var i = 0; i < boundary.length; i++) {
           boundary[i].classList.add("youlose");
         }
@@ -27,10 +29,14 @@ window.onload = function () {
     if (lost) {
       gameStatus.innerHTML =
         "You already lost that round,press start to try again";
+    } else if (cheating) {
+      gameStatus.innerHTML = "Cheater!!!";
+      gameon = false;
     } else {
       if (gameon) {
-        gameStatus.innerHTML = "You Won!"; //+5 here
+        gameStatus.innerHTML = "You Won! Press Start to try again"; //+5 here
         gameon = false;
+        score += 5;
       }
     }
   }
@@ -41,11 +47,11 @@ window.onload = function () {
     }
     lost = false;
     gameon = true;
-    cheat = false;
+    cheating = false;
   }
 
   function cheat() {
-    cheat = true;
+    cheating = true;
   }
 
   start.addEventListener("click", started);
