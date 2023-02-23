@@ -17,8 +17,8 @@ window.onload = function () {
       if (gameon) {
         gameStatus.innerHTML = "You Lost!"; //-10 here
         score -= 10;
-        scoreBoard.innerHTML = `${score}`;
-        for (var i = 0; i < boundary.length; i++) {
+        scoreBoard.innerHTML = score;
+        for (var i = 0; i < boundary.length - 1; i++) {
           boundary[i].classList.add("youlose");
         }
         lost = true;
@@ -32,20 +32,20 @@ window.onload = function () {
       gameStatus.innerHTML =
         "You already lost that round,press start to try again";
     } else if (cheating && gameon) {
-      gameStatus.innerHTML = "Cheater!!!";
+      gameStatus.innerHTML = "I see what you did here ;)";
       gameon = false;
     } else {
       if (gameon) {
         gameStatus.innerHTML = "You Won! Press Start to try again"; //+5 here
         gameon = false;
         score += 5;
-        scoreBoard.innerHTML = `${score}`;
+        scoreBoard.innerHTML = score;
       }
     }
   }
   function started() {
     gameStatus.innerHTML = "Game started";
-    for (var i = 0; i < boundary.length; i++) {
+    for (var i = 0; i < boundary.length - 1; i++) {
       boundary[i].classList.remove("youlose");
     }
     lost = false;
@@ -66,7 +66,7 @@ window.onload = function () {
 
   end.addEventListener("mouseover", won);
 
-  for (var i = 0; i < boundary.length; i++) {
+  for (var i = 0; i < boundary.length - 1; i++) {
     boundary[i].addEventListener("mouseover", lose);
   }
 
