@@ -1,14 +1,28 @@
-const start = document.getElementById("start");
-const end = document.getElementById("end");
-const boundary = document.getElementsByClassName("boundary");
-let status = document.getElementById("status");
+window.onload = function () {
+  var start = document.getElementById("start");
+  var end = document.getElementById("end");
+  var boundary = document.querySelectorAll(".boundary");
+  var gameStatus = document.getElementById("status");
 
-console.log(status);
+  function lose() {
+    gameStatus.innerHTML = "You Lost!";
+    for (var i = 0; i < boundary.length; i++) {
+      boundary[i].classList.add("youlose");
+    }
+  }
 
-start.addEventListener("click", () => {
-  status.innerHTML = "Game started";
-});
+  function won() {
+    gameStatus.innerHTML = "You Won!";
+  }
+  function started() {
+    gameStatus.innerHTML = "Game started";
+  }
 
-boundary.addEventListener("hover", () => {
-  status.innerHTML = "You lost";
-});
+  start.addEventListener("click", started);
+
+  end.addEventListener("mouseover", won);
+
+  for (var i = 0; i < boundary.length; i++) {
+    boundary[i].addEventListener("mouseover", lose);
+  }
+};
